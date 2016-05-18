@@ -11,9 +11,6 @@ var ip = '0.0.0.0';
 
 
 // Environment Variables
-var logoOSE = process.env.LOGO_URL_OPENSHIFT;
-var logoDB = process.env.LOGO_URL_DB;
-
 
 // Variables
 
@@ -22,7 +19,7 @@ var logoDB = process.env.LOGO_URL_DB;
 // Functions
 // 
 app.get('/', function (req, res) {
-    res.render('index.html', { pageCountMessage : resultArray.length, dbInfo: dbDetails, searchResult: resultArray, logoOSE: logoOSE, logoDB: logoDB });
+    res.render('index.html');
 });
 
 
