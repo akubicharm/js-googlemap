@@ -20,7 +20,11 @@
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
+      var pos = document.getElementById("pos");
+      pos += "緯度 :" + latitude + ", 経度: " + longitude;
     }
+
     google.maps.event.addDomListener(window, 'load', function() { 
       var map = document.getElementById("gmap"); 
         var options = { 
@@ -34,10 +38,8 @@
   <!-- MapType, MapTypeId.ROADMAP, MapTypeId.SATELLITE, MapTypeId.HYBRID, MapTyeId.TERRAIN -->
 </head> 
 <body> 
-  <h1>Microsoft LOVES OpenShift</h1>
-  <h1>OpenShift LOVES Microsoft Azure</h1>
- 
   <form action="#" onsubmit="getLatLng(document.getElementById('address').value);return(false);">
+  <div id="pos"></div>
   <div id="gmap" style="width : 500px; height : 500px;"></div> 
 </body> 
 </html> 
