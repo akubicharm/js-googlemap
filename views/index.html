@@ -38,7 +38,19 @@
       }); 
 
 
-    function showLocation(address) {
+    function showLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+        document.getElementById('pos').innerText = msg;
+      }
+      var map = document.getElementById("gmap"); 
+        var options = { 
+          zoom: 16, 
+          center: new google.maps.LatLng(latitude, longitude),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }; 
+        new google.maps.Map(map, options); 
+      }); 
     }
   </script> 
   <!-- MapType, MapTypeId.ROADMAP, MapTypeId.SATELLITE, MapTypeId.HYBRID, MapTyeId.TERRAIN -->
@@ -48,6 +60,8 @@
     <input type="text" size="50" name="addresss" />
     <input type="submit" value="検索" />
   </form>
+
+  <p><button onclick="showLocation()">show my location</button></p>
   <p id="pos"></p>
   <div id="gmap" style="width : 500px; height : 500px;"></div> 
 </body> 
