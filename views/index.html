@@ -6,22 +6,27 @@
   <script type="text/javascript"> 
     var latitude = 0;
     var longitude = 0;
+    var msg = "Emtpy";
 
     function successCallback(position) {
       latitude = position.coords.latidude;
       longitude = position.coords.longitude;
+
+      msg = "緯度:" + latitude + ", 経度:" + langitude;
     }
 
     function errorCallback(error) {
       latitude = 35.6471564;
       longitude = 139.7075454;
+
+      msg = "Error occured";
     } 
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }
 
-    document.getElementById("pos").innerText = "緯度 :" + latitude + ", 経度: " + longitude;
+    document.getElementById("pos").innerText = msg;
 
     google.maps.event.addDomListener(window, 'load', function() { 
       if (navigator.geolocation) {
