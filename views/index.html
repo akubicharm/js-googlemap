@@ -24,6 +24,9 @@
     document.getElementById("pos").innerText = "緯度 :" + latitude + ", 経度: " + longitude;
 
     google.maps.event.addDomListener(window, 'load', function() { 
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+      }
       var map = document.getElementById("gmap"); 
         var options = { 
           zoom: 16, 
