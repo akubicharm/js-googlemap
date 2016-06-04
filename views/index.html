@@ -44,13 +44,13 @@
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
         document.getElementById('pos').innerText = msg;
-
-        var myLatLng = {lat: latitude, lng: longitude}
       }
+      var myLatLng = {lat: latitude, lng: longitude}
       var map = document.getElementById("gmap"); 
       var options = { 
           zoom: 16, 
-          center: new google.maps.LatLng(latitude, longitude),
+          //center: new google.maps.LatLng(latitude, longitude),
+          center: myLatLng,
           mapTypeId: google.maps.MapTypeId.ROADMAP
       }; 
       new google.maps.Map(map, options); 
