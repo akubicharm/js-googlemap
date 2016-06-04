@@ -23,23 +23,6 @@
       msg = "Error occured";
     } 
 
-<!--
-    google.maps.event.addDomListener(window, 'load', function() { 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-        document.getElementById('pos').innerText = msg;
-      }
-      var map = document.getElementById("gmap"); 
-        var options = { 
-          zoom: 16, 
-          center: new google.maps.LatLng(latitude, longitude),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }; 
-        new google.maps.Map(map, options); 
-      }); 
--->
-
-
     function showLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
