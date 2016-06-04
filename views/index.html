@@ -9,10 +9,10 @@
     var msg = "Emtpy";
 
     function successCallback(position) {
-      latitude = position.coords.latidude;
+      latitude = position.coords.latitude;
       longitude = position.coords.longitude;
 
-      msg = "緯度:" + latitude + ", 経度:" + langitude;
+      msg = "緯度:" + latitude + ", 経度:" + longitude;
     }
 
     function errorCallback(error) {
@@ -26,7 +26,7 @@
       navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }
 
-    document.getElementById("pos").innerText = msg;
+    document.getElementById('pos').innerText = msg;
 
     google.maps.event.addDomListener(window, 'load', function() { 
       if (navigator.geolocation) {
