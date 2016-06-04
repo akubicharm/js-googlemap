@@ -3,7 +3,7 @@
 <head> 
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/> 
   <title>Google Maps V3で地図を表示する</title> 
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbi26T3Zue22gdM6JWbcEZ_E7z1XNwFQA"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbi26T3Zue22gdM6JWbcEZ_E7z1XNwFQA&callback=showLocation"></script>
   <script type="text/javascript">
     var  latitude = 0;
     var  longitude = 0;
@@ -23,6 +23,7 @@
       msg = "Error occured";
     } 
 
+<!--
     google.maps.event.addDomListener(window, 'load', function() { 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
@@ -36,20 +37,30 @@
         }; 
         new google.maps.Map(map, options); 
       }); 
+-->
 
 
     function showLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
         document.getElementById('pos').innerText = msg;
+
+        var myLatLng = {lat: latitude, lng: longitude}
       }
       var map = document.getElementById("gmap"); 
-        var options = { 
+      var options = { 
           zoom: 16, 
           center: new google.maps.LatLng(latitude, longitude),
           mapTypeId: google.maps.MapTypeId.ROADMAP
-        }; 
-        new google.maps.Map(map, options); 
+      }; 
+      new google.maps.Map(map, options); 
+
+      var makerOpts = {
+         position: myLatLng,
+         map: map,
+         title: 'Hello OpenShift'
+     };
+      var maker = new google.maps.Marker(map, makerOpts);
     }
   </script> 
   <!-- MapType, MapTypeId.ROADMAP, MapTypeId.SATELLITE, MapTypeId.HYBRID, MapTyeId.TERRAIN -->
