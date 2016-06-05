@@ -37,7 +37,7 @@
 
     function getLocation() {
       var myLatLng = {lat: 0, lng: 0};
-      new GClientGoocoder().getLatLng(document.getElementById('address').value, function () {
+      new GClientGeocoder().getLatLng(document.getElementById('address').value, function () {
         if (position) {
           latitude = position.coords.latitude;
           longitude = position.coords.longitude;
