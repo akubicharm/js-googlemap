@@ -23,6 +23,49 @@
       msg = "Error occured";
     } 
 
+
+    function getCurrentLocation() {
+      var myLatLng = {lat: 0, lng: 0};
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+        myLatLng = {lat: latitude, lng: longitude}
+      }
+
+      return myLatLng;
+    }
+
+
+    function getLocation() {
+      var myLatLng = {lat: 0, lng: 0};
+      getLatLng(document.getElementById('address').value, function () {
+        if (position) {
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+        }
+      });
+      myLatLng = {lat: latitude, lng: longitude}
+      return myLatLng;
+    }
+
+    function showLocation(position) {
+      document.getElementById('pos').innerText = msg;
+      var map = document.getElementById("gmap"); 
+      var options = { 
+          zoom: 16, 
+          //center: new google.maps.LatLng(latitude, longitude),
+          center: position,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      }; 
+      var map = new google.maps.Map(map, options); 
+
+      var markerOpts = {
+         position: position,
+         map: map,
+         title: 'Hello OpenShift'
+      };
+      var marker = new google.maps.Marker(markerOpts);
+    }
+
     function showLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
@@ -49,12 +92,12 @@
   <!-- MapType, MapTypeId.ROADMAP, MapTypeId.SATELLITE, MapTypeId.HYBRID, MapTyeId.TERRAIN -->
 </head> 
 <body> 
-  <form action="#" onsubmit="getLatLng(document.getElementById('address').value);return(false);">
+  <form action="#" onsubmit="showLocation(getLocation()); return(false);">
     <input type="text" size="50" name="addresss" />
     <input type="submit" value="検索" />
   </form>
 
-  <p><button onclick="showLocation()">show my location</button></p>
+  <p><button onclick="showLocation(getCurrentLocation())">show my location</button></p>
   <p id="pos"></p>
   <div id="gmap" style="width : 500px; height : 500px;"></div> 
 </body> 
