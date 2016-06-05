@@ -37,7 +37,7 @@
 
     function getLocation() {
       var myLatLng = {lat: 0, lng: 0};
-      gGeo = new GClientGeocoder();
+      gGeo = new google.maps.Geocoder();
       gGeo.getLatLng(document.getElementById('address').value, function () {
         if (position) {
           latitude = position.coords.latitude;
