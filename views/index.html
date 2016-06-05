@@ -37,14 +37,16 @@
 
     function getLocation() {
       var myLatLng = {lat: 0, lng: 0};
+      var address = document.getElementById("address").value; 
       gGeo = new google.maps.Geocoder();
-      gGeo.getLatLng(document.getElementById('address').value, function () {
-        if (position) {
+      gGeo.getLatLng({'address': address}, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          position = results[0].geometry.location;
           latitude = position.coords.latitude;
           longitude = position.coords.longitude;
+          myLatLng = {lat: latitude, lng: longitude}
         }
       });
-      myLatLng = {lat: latitude, lng: longitude}
       return myLatLng;
     }
 
@@ -53,7 +55,6 @@
       var map = document.getElementById("gmap"); 
       var options = { 
           zoom: 16, 
-          //center: new google.maps.LatLng(latitude, longitude),
           center: position,
           mapTypeId: google.maps.MapTypeId.ROADMAP
       }; 
@@ -93,10 +94,10 @@
   <!-- MapType, MapTypeId.ROADMAP, MapTypeId.SATELLITE, MapTypeId.HYBRID, MapTyeId.TERRAIN -->
 </head> 
 <body> 
-  <form action="#" onsubmit="showLocation(getLocation()); return(false);">
+  <p>
     <input type="text" size="50" name="address" />
-    <input type="submit" value="検索" />
-  </form>
+    <button onclick="showLocation(getLocation())">Show Location</button></p>
+  </p>
 
   <p><button onclick="showLocation(getCurrentLocation())">show my location</button></p>
   <p id="pos"></p>
