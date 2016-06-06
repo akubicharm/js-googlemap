@@ -42,8 +42,8 @@
       gGeo.geocode({'address': address}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           position = results[0].geometry.location;
-          latitude = lat;
-          longitude = lng;
+          latitude = position.lat;
+          longitude = position.lng;
           myLatLng = {lat: latitude, lng: longitude}
         }
       });
