@@ -38,14 +38,17 @@
     function getLocation() {
       var myLatLng = {lat: 0, lng: 0};
       var address = document.getElementById("address").value; 
-      var position;
+      var pos;
       gGeo = new google.maps.Geocoder();
       gGeo.geocode({'address': address}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-          position = results[0].geometry.location;
+          pos = results[0].geometry.location;
         }
       });
-      return position;
+      msg = "緯度: " + position.lat + ", 経度:" + position.lng;
+
+      window.alert(address + msg);
+      return pos;
     }
 
     function showLocation(position) {
