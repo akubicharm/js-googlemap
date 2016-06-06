@@ -39,7 +39,7 @@
       var myLatLng = {lat: 0, lng: 0};
       var address = document.getElementById("address").value; 
       gGeo = new google.maps.Geocoder();
-      gGeo.getLatLng({'address': address}, function (results, status) {
+      gGeo.geocode({'address': address}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           position = results[0].geometry.location;
           latitude = position.coords.latitude;
