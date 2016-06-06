@@ -45,7 +45,7 @@
           pos = results[0].geometry.location;
         }
       });
-      msg = "緯度: " + pos.lat + ", 経度:" + pos.lng;
+      msg = pos;
 
       window.alert(address + msg);
       return pos;
