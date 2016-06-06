@@ -38,16 +38,14 @@
     function getLocation() {
       var myLatLng = {lat: 0, lng: 0};
       var address = document.getElementById("address").value; 
+      var position;
       gGeo = new google.maps.Geocoder();
       gGeo.geocode({'address': address}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           position = results[0].geometry.location;
-          latitude = position.lat;
-          longitude = position.lng;
-          myLatLng = {lat: latitude, lng: longitude}
         }
       });
-      return myLatLng;
+      return position;
     }
 
     function showLocation(position) {
