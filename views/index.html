@@ -43,12 +43,13 @@
       gGeo.geocode({'address': address}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           pos = results[0].geometry.location;
+          myLatLng = {lat: pos.lat, lng: pos.lng};
         }
       });
-      msg = pos;
+      msg = myLatLng;
 
       window.alert(address + msg);
-      return pos;
+      return myLatLng;
     }
 
     function showLocation(position) {
