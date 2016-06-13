@@ -8,7 +8,7 @@
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
 	    zoom: 8,
-	    center: {lat: 35.645689, lng: 139.711052},
+	    center: {lat: 35.6455761, lng: 139.7110421},
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
     var geocoder = new google.maps.Geocoder();
@@ -18,7 +18,7 @@ function initMap() {
 	});
     
     document.getElementById('showCurrentLocation').addEventListener('click', function() {
-	    geocodeAddress(geocoder, map);
+	    currentLocation(map);
 	});
 }
 
@@ -37,10 +37,9 @@ function geocodeAddress(geocoder, resultsMap) {
 	});
 }
 
-function currentLocation() {
+function currentLocation(map) {
     var pos;
     if (navigator.geolocation) {
-	var map = document.getElementById("gmap");
 	navigator.geolocation.getCurrentPosition(function(position) {
 		map.setCenter(position);
 		var makerOpts = new google.maps.Marker({
@@ -54,8 +53,6 @@ function currentLocation() {
 	alert('Cannot get current location');
     }
 }
-
-
   </script>
 </head> 
 <body onLoad="initMap()"> 
