@@ -5,6 +5,9 @@
   <title>Google Maps V3で地図を表示する</title> 
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbi26T3Zue22gdM6JWbcEZ_E7z1XNwFQA"></script>
   <script type="text/javascript">
+
+google.maps.event.addDomistener(window, 'load', initMap);
+
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
 	    zoom: 8,
@@ -12,7 +15,7 @@ function initMap() {
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
     var geocoder = new google.maps.Geocoder();
-    
+
     document.getElementById('showLocation').addEventListener('click', function() {
 	    geocodeAddress(geocoder, map);
 	});
@@ -55,13 +58,13 @@ function currentLocation(map) {
 }
   </script>
 </head> 
-<body onLoad="initMap()"> 
+<body>
   <p>
-    <button id="showCurrentLocation">"You Are Here!"</button>
+    <button id="showCurrentLocation">You Are Here!</button>
     <input id="address" type="text" size="50" />
     <button id="showLocation">Show Map</button>
   </p>
 
-  <div id="gmap" style="width : 500px; height : 500px;"></div> 
+  <div id="gmap" style="width: 500px; height: 500px;"></div> 
 </body> 
 </html> 
