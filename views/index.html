@@ -41,9 +41,11 @@ function currentLocation(map) {
     var pos;
     if (navigator.geolocation) {
 	navigator.geolocation.getCurrentPosition(function(position) {
-		map.setCenter(position);
+                var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude}
+
+		map.setCenter(myLatLng);
 		var makerOpts = new google.maps.Marker({
-			position: position,
+			position: myLatLng,
 			map: map,
 			title: 'You are here'
 		    });
